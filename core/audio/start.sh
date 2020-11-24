@@ -57,7 +57,8 @@ function route_output_sink() {
   # If file doesn't exist, default to sink #0. This shouldn't happen though
   local SINK_FILE=/run/pulse/pulseaudio.sink
   if [[ -f "$SINK_FILE" ]]; then
-    OUTPUT=$(cat "$SINK_FILE")
+    # OUTPUT=$(cat "$SINK_FILE")
+    OUTPUT="alsa_output.1.stereo-fallback"
   fi
   OUTPUT="${OUTPUT:-0}"
   sed -i "s/%OUTPUT_SINK%/sink=\"$OUTPUT\"/" "$CONFIG_FILE"
